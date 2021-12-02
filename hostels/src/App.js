@@ -79,6 +79,8 @@ function Search() {
             <p> {hostel.address} </p>
             <p>  {hostel.postcode} </p>
             <p>  {hostel.email} </p>
+            <p>  {hostel.ratings} </p>
+            <p> {hostel.reviews.map((reviews, index) => {return (<div key={index+1}>{reviews.reviewer + " : " + reviews.review}</div>)})} </p>
           </li>
         ))}
       </ul>
