@@ -6,12 +6,18 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "ansi-html": "0.0.7",
+    "clean-css": "^5.2.2",
+    "constantinople": "^4.0.1",
     "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
+    "immer": "^9.0.7",
     "jade": "~1.11.0",
-    "morgan": "~1.9.1"
+    "minimist": "^1.2.5",
+    "morgan": "~1.9.1",
+    "nth-check": "^2.0.1"
   }
 }
