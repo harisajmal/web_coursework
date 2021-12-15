@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
 
-
-
 function HostelsList() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -15,9 +13,6 @@ function HostelsList() {
           setIsLoaded(true);
           setHostels(result);
         },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
         (error) => {
           setIsLoaded(true);
           setError(error);
@@ -45,7 +40,6 @@ function HostelsList() {
             <p> Address: {hostel.address} </p>
             <p> PostCode:  {hostel.postcode} </p>
             <p> Email:  {hostel.email} </p>
-            
           </li>
         ))}
       </ul>

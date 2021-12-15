@@ -21,6 +21,7 @@ fetch(`http://localhost:9000/hostels/review/${props.id}`, {
       console.warn("result",result)
     })
   })
+  window.location.reload(false);
 }
   return (
     <div className="App">

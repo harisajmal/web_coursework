@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
+import DynamicChart from './DynamicChart';
 import WriteReviews from './WriteReviews';
-
 
 function ViewRatings() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [hostels, setHostels] = useState([]);
   const [showForm, setShowForm] = useState(false);
+  const [showChart, setChart] = useState(false);
 
   useEffect(() => {
     fetch("http://localhost:9000/hostels")
@@ -22,9 +23,15 @@ function ViewRatings() {
         (error) => {
           setIsLoaded(true);
           setError(error);
+          
         }
+        
       )
-  }, [])
+      
+  },
+  
+  [])
+  
 
   if (error) {
     return <>{error.message}</>;
@@ -42,14 +49,14 @@ function ViewRatings() {
           
           <li key={hostel.id}>
             
-           <p> Name: {hostel.name} </p>
-            <p> Address: {hostel.address} </p>
+           <h2> Name: {hostel.name} </h2>
+           
 
-            <p> Ratings:  {hostel.ratings} </p>
+            <p> Ratings:  {hostel.ratings + "" } </p>
             <p> Number of People Rated:  {hostel.ratings.length} </p>
 
-
-            {/* {hostel.ratings.map((ratings, index) => {
+<p>
+            {hostel.ratings.map((ratings, index) => {
                 const avgRating =
                 hostel.ratings.reduce((sum, curr) => sum + Number(curr), 0) /
                 hostel.ratings.length;
@@ -59,7 +66,8 @@ function ViewRatings() {
                     <p> Average Rating {avgRating}</p>
                  
                 )
-              })} */}
+              })}
+              </p>
 
 <p> Reviews: {hostel.reviews.map((reviews, index) => {return (<div key={index+1}>{ reviews.reviewer + " : " + reviews.review }</div>)})} </p>
             
@@ -70,6 +78,11 @@ function ViewRatings() {
             
             {showForm?< WriteReviews id={hostel.id} />:null}
 
+            <div className="button-reviews">
+              <button onClick={()=> {setChart(!showChart)}}>{showChart?"Hide":"View"} Chart</button>
+            </div>
+            
+            {showChart?< DynamicChart id={hostel.id} />:null}
 
           </li>
         ))}

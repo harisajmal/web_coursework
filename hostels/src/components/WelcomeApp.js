@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import CreateIternary from './CreateIternary';
 import HostelsList from './HostelsList';
 import SearchHostels from './SearchHostels'
 import ViewItinerery from './ViewItinerary'
@@ -10,6 +11,7 @@ function WelcomeApp() {
     const [previewSearch, openSearch] = useState(false);
     const [previewItineraries, openItineraries] = useState(false);
     const [previewRatings, openRatings] = useState(false);
+    const [impItineraries, createItenaries] = useState(false);
   
     const [hostel] = useState([]);
 
@@ -17,11 +19,11 @@ function WelcomeApp() {
     <div className="button-ratings">
 
     <h1> Welcome to the Hostels App</h1>
-    <p> Click on Display List button to see all hostels</p>
-    <button onClick={()=> {openList(!previewList)}}>{previewList?"Hide":"Display"} Hostels List</button>
+    <p> Click on the buttons below to perform different actions</p>
+    <button onClick={()=> {openList(!previewList)}}>{previewList?"Hide":"View"} List of all Hostels </button>
     {previewList?< HostelsList id={hostel.id} />:null}
     
-    <button onClick={()=> {openSearch(!previewSearch)}}>{previewSearch?"Hide":"Display"} Search Bar</button>
+    <button onClick={()=> {openSearch(!previewSearch)}}>{previewSearch?"Hide":""} Filter Hostels</button>
     {previewSearch?< SearchHostels id={hostel.id} />:null}
 
     <button onClick={()=> {openRatings(!previewRatings)}}>{previewRatings?"Hide":"Display"} Ratings and Reviews</button>
@@ -30,6 +32,9 @@ function WelcomeApp() {
     
     <button onClick={()=> {openItineraries(!previewItineraries)}}>{previewItineraries?"Hide":"Display"} Itineraries</button>
     {previewItineraries?< ViewItinerery id={hostel.id} />:null}
+
+    <button onClick={()=> {createItenaries(!impItineraries)}}>{impItineraries?"Hide":"Display"} Create Itineraries</button>
+    {impItineraries?< CreateIternary id={hostel.id} />:null}
   </div>
   
     )}
