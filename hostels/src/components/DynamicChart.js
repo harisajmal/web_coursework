@@ -18,8 +18,7 @@ const state = {
   ]
 }
 
-// Inspiration taken from https://stackoverflow.com/questions/67727603/error-category-is-not-a-registered-scale
-export default class HostelRatingsChart extends React.Component {
+export default class DynamicChart extends React.Component {
   render() {
     return (
       <div>

@@ -68,7 +68,7 @@ function ViewRatings() {
             
 
 <div className="button-reviews">
-              <button onClick={()=> {setItinerary(!showItinerary)}}>{showItinerary?"Hide":"Write"} Review</button>
+              <button onClick={()=> {setItinerary(!showItinerary)}}>{showItinerary?"Hide":"Add"} itinerary</button>
             </div>
             
             {showItinerary?< CreateItinerary id={itinerary.user} />:null}

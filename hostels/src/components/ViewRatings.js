@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import DynamicChart from './DynamicChart';
 import WriteReviews from './WriteReviews';
 
 function ViewRatings() {
@@ -7,7 +6,19 @@ function ViewRatings() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hostels, setHostels] = useState([]);
   const [showForm, setShowForm] = useState(false);
-  const [showChart, setChart] = useState(false);
+
+  function calculateAverage(hostel){
+    var ratings = 0;
+    var count = 0;
+    var total = 0;
+
+    hostel.ratings.forEach(function(value) {
+      ratings+= value;
+      count++;
+      total = ratings/count;
+    });
+    return total.toFixed(1);
+  }
 
   useEffect(() => {
     fetch("http://localhost:9000/hostels")
@@ -55,19 +66,8 @@ function ViewRatings() {
             <p> Ratings:  {hostel.ratings + "" } </p>
             <p> Number of People Rated:  {hostel.ratings.length} </p>
 
-<p>
-            {hostel.ratings.map((ratings, index) => {
-                const avgRating =
-                hostel.ratings.reduce((sum, curr) => sum + Number(curr), 0) /
-                hostel.ratings.length;
 
-                return (
-               
-                    <p> Average Rating {avgRating}</p>
-                 
-                )
-              })}
-              </p>
+              <p> {"Average Ratings: " + calculateAverage(hostel)}</p>
 
 <p> Reviews: {hostel.reviews.map((reviews, index) => {return (<div key={index+1}>{ reviews.reviewer + " : " + reviews.review }</div>)})} </p>
             
@@ -78,11 +78,7 @@ function ViewRatings() {
             
             {showForm?< WriteReviews id={hostel.id} />:null}
 
-            <div className="button-reviews">
-              <button onClick={()=> {setChart(!showChart)}}>{showChart?"Hide":"View"} Chart</button>
-            </div>
-            
-            {showChart?< DynamicChart id={hostel.id} />:null}
+          
 
           </li>
         ))}
